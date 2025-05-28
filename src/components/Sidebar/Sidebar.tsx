@@ -17,7 +17,7 @@ export default function Sidebar({ sessions, currentSessionId, onSelect, onDelete
         <>
             {sidebarOpen && <div className="fixed inset-0 bg-opacity-50 z-20 md:hidden" onClick={onClose} />}
             <aside className={`fixed flex flex-col inset-y-0 w-64 bg-surface z-30 transform transition-transform duration-200 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:relative md:translate-x-0 md:z-auto`}>
-                <div className="flex items-center bg-background justify-center p-4 h-[74px] ">
+                <div className="flex items-center bg-background justify-center p-4 h-[74px] border-r border-border">
                     <span className="text-xl font-semibold text-white">Чати</span>
 
                     {/* <button onClick={onNew} className="text-blue-600 hover:text-blue-800 text-xl font-semibold cursor-pointer">+ Новий</button> */}
