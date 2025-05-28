@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Sidebar from './components/Sidebar/Sidebar';
 import FileUploader from './components/FileUploader';
 import ChatHeader from './components/Chat/ChatHeader';

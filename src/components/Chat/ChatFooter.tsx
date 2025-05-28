@@ -1,4 +1,4 @@
-import React, { useState, type ChangeEvent, type KeyboardEvent } from 'react';
+import { useState, type ChangeEvent, type KeyboardEvent } from 'react';
 
 interface Props { onSend: (text: string) => void; disabled: boolean; }
 
