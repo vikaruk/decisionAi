@@ -1,50 +1,38 @@
-import { useMemo, useState, type ChangeEvent } from 'react';
-import { pollFileStatus, uploadFile } from '../api/gemini';
-import { createPartFromUri, type Content } from '@google/genai';
+import React, { useState, type ChangeEvent } from 'react';
 import Spinner from './Spinner';
-import { v4 as uuid } from 'uuid';
-import type { Session } from '../types';
 
 interface Props {
-    addSession: (session: Session) => void;
-    setCurrentSessionId: React.Dispatch<React.SetStateAction<string | null>>
-    history: Content[]
-    currentSession: Session | null
+    addFilesToExistingSession: (files: FileList) => Promise<void>;
+    onFinish: () => void;
+    disable: boolean;
 }
-export default function FileUploader({ addSession, setCurrentSessionId, history, currentSession }: Props) {
+
+export default function FileUploader({
+    addFilesToExistingSession,
+    onFinish,
+    disable,
+}: Props) {
     const [fileLoading, setFileLoading] = useState(false);
     const [dragActive, setDragActive] = useState(false);
-    const disable = useMemo(() => !!history?.length, [history])
 
-    const processFile = async (file: File) => {
+    const handleAddFiles = async (files: FileList) => {
         setFileLoading(true);
         try {
-            const uploaded = await uploadFile(file);
-            const status = await pollFileStatus(uploaded.name!);
-            const filePart = createPartFromUri(status.uri!, file.type);
-            const message = { role: 'user', parts: [{ text: 'Будь ласка, проаналізуй цей документ:' }, filePart] };
-            const id = uuid();
-            const session: Session = { id, title: file.name, history: [message] };
-            addSession(session);
-            setCurrentSessionId(id);
+            await addFilesToExistingSession(files);
         } catch (err) {
             console.error(err);
-            alert('Не вдалося обробити файл.');
+            alert('Не вдалося обробити файл(и).');
         } finally {
             setFileLoading(false);
             setDragActive(false);
+            onFinish();
         }
-    };
-
-    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file) processFile(file);
     };
 
     const handleDragOver = (e: React.DragEvent) => {
         e.preventDefault();
         e.stopPropagation();
-        if (!fileLoading) setDragActive(true);
+        if (!fileLoading && !disable) setDragActive(true);
     };
     const handleDragLeave = (e: React.DragEvent) => {
         e.preventDefault();
@@ -55,34 +43,80 @@ export default function FileUploader({ addSession, setCurrentSessionId, history,
         e.preventDefault();
         e.stopPropagation();
         if (fileLoading) return;
-        const file = e.dataTransfer.files?.[0];
-        if (file) processFile(file);
+        const files = e.dataTransfer.files;
+        if (!files || files.length === 0 || disable) return;
+        const validFiles: File[] = [];
+        const invalidFiles: string[] = [];
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            if (isValidFile(file.name, file.type)) {
+                validFiles.push(file);
+            } else {
+                invalidFiles.push(file.name);
+            }
+        }
+        if (invalidFiles.length > 0) {
+            alert(
+                `Файли з недопустимими розширеннями:\n${invalidFiles.join(
+                    ', '
+                )}\nДозволені лише .pdf, .txt`
+            );
+        }
+        if (validFiles.length > 0) {
+            const dataTransfer = new DataTransfer();
+            validFiles.forEach((f) => dataTransfer.items.add(f));
+            handleAddFiles(dataTransfer.files);
+        }
+
+    };
+
+    const isValidFile = (filename: string, mimeType: string): boolean => {
+        const lowerName = filename.toLowerCase();
+        const extOk = lowerName.endsWith('.pdf') || lowerName.endsWith('.txt');
+        const mimeOk =
+            mimeType === 'application/pdf' || mimeType === 'text/plain';
+        console.log(extOk, mimeOk)
+        return extOk && mimeOk;
+    };
+
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const files = e.target.files;
+        if (!files || files.length === 0 || disable) return;
+        handleAddFiles(files)
+        e.target.value = '';
     };
 
     return (
-        <div className="mb-4">
+        <div className="mb-4 w-[90%]">
             <label
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
                 onDrop={handleDrop}
                 htmlFor="file-input"
-                className={`
-                    flex flex-col items-center justify-center border-2 border-dashed border-primary rounded-lg select-none transition-colors p-8 text-center
-                    ${disable ? 'opacity-50 cursor-no-drop' : `cursor-pointer ${dragActive ? 'bg-primary/25' : ''} ${fileLoading ? 'opacity-50 cursor-wait' : 'hover:bg-primary/25'}`}
-                `}
+                className={` relative flex flex-col items-center justify-center transition-colors p-8 text-center border-2 
+                    border-dashed border-primary rounded-lg select-none  
+                     ${disable ? 'opacity-50 cursor-no-drop' : `cursor-pointer ${dragActive ? '!bg-primary/25' : ''} 
+                    ${fileLoading ? 'opacity-50 cursor-wait' : 'hover:bg-primary/25 dark:hover:bg-primary/25'} bg-white dark:bg-gray-800`}
+        `}
             >
                 <input
                     id="file-input"
                     type="file"
                     accept=".pdf,.txt"
+                    multiple
                     onChange={handleInputChange}
-                    disabled={fileLoading || disable}
-                    className="sr-only"
+                    disabled={disable || fileLoading}
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                 />
-                <span className="text-gray-500 dark:text-gray-400">
-                    {currentSession?.title || <>Завантажити <strong>PDF</strong> або <strong>TXT</strong></>}
-                </span>
-                {fileLoading && <Spinner />}
+                {!fileLoading ? (
+                    <span className="text-gray-500 dark:text-gray-400">
+                        Завантажити <strong>PDF</strong> або <strong>TXT</strong>
+                        <br />
+                        або перетягніть файли сюди
+                    </span>
+                ) : (
+                    <Spinner />
+                )}
             </label>
         </div>
     );

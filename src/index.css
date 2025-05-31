@@ -18,10 +18,10 @@ html{
 :root {
   --color-bg:      #438b4b; /* header */
   --color-surface: #edf8f0; /* main wrapper bg */
-  --color-text:    #1f2937;
-  --color-placeholder:    #1f293767;
-  --color-border: #1f29373b; 
-  --color-primary: #27a351; /* button */
+  --color-text:    #1f2937; /* text, icons */
+  --color-placeholder:    #1f293767;/* ChatFooter input placeholder */
+  --color-border: #1f29373b; /* border */
+  --color-primary: #27a351; /* button, border для (fileUploader,MessageBubble), AddFileIcon hover, selected chat  hover*/
 }
 
 /* Темна тема */
@@ -32,4 +32,14 @@ html{
   --color-placeholder:    #a6beb472;
   --color-border: #c4d6cf56; /* button */
   --color-primary: #0fb46f; 
+}
+
+code {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  white-space: pre;
+}
+code *{
+  max-width: 100%;
 }
