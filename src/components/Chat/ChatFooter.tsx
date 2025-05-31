@@ -1,4 +1,4 @@
-import React, { useState, type ChangeEvent, type KeyboardEvent } from 'react';
+import { useState, type ChangeEvent, type KeyboardEvent } from 'react';
 import AddFileIcon from '../icons/AddFileIcon';
 import type { Part } from '@google/genai';
 import FileIcon from '../icons/FileIcon';
