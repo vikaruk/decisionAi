@@ -40,7 +40,7 @@ export default function MessageBubble({ msg }: Props) {
                         {message}
                     </ReactMarkdown>
                 </div>
-                <TailIcon className={`z-0 ${isUser ? '' : 'scale-x-[-1]'}`} style={styleBox} colorTheme={isUser ? 'primary' : isDarkTheme ? 'bg' : 'third'} />
+                <TailIcon className={`z-0 ${isUser ? '' : 'scale-x-[-1]'}`} style={styleBox} colorTheme={isUser ? 'primary' : isDarkTheme ? 'third' : 'third'} />
             </div>
         </>
     );
