@@ -28,19 +28,19 @@ export default function MessageBubble({ msg }: Props) {
     return (
         <>
             {msg?.fileNames?.map(fileName =>
-                <div className='flex justify-end items-center text-text gap-2'>
+                <div className='flex justify-end items-center text-fifth gap-2'>
                     <FileIcon />
                     {fileName}
                 </div>
             )}
 
             <div className={`relative flex ${isUser ? 'justify-end' : 'justify-start'}`}>
-                <div className={`${isUser ? 'text-white dark:text-gray-950 bg-primary' : 'text-text border border-border  dark:bg-background'} px-4 py-2 rounded-xl max-w-[90%] prose prose-sm overflow-x-auto`}>
+                <div className={`${isUser ? 'text-eighth bg-primary' : 'text-fifth bg-third '} px-4 py-2 rounded-xl max-w-[90%] prose prose-sm overflow-x-auto`}>
                     <ReactMarkdown remarkPlugins={[remarkGfm]}>
                         {message}
                     </ReactMarkdown>
                 </div>
-                <TailIcon className={`z-0 ${isUser ? '' : 'scale-x-[-1]'}`} style={styleBox} colorTheme={isUser ? 'primary' : isDarkTheme ? 'bg' : ''} />
+                <TailIcon className={`z-0 ${isUser ? '' : 'scale-x-[-1]'}`} style={styleBox} colorTheme={isUser ? 'primary' : isDarkTheme ? 'bg' : 'third'} />
             </div>
         </>
     );

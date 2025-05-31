@@ -6,7 +6,7 @@ interface Props {
 
 export default function ChatHeader({ onMenuClick }: Props) {
     return (
-        <header className="bg-background text-white p-2 md:p-4 flex items-center h-[74px]">
+        <header className="bg-primary dark:bg-third text-secondary p-2 md:p-4 flex items-center h-[74px]">
             <button className="md:hidden p-2 mr-2" onClick={onMenuClick}>
                 <MenuIcon />
             </button>

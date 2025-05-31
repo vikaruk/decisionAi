@@ -11,7 +11,7 @@ export default function ThinkingDots() {
     }, []);
 
     return (
-        <div className="text-left text-gray-500 font-medium">
+        <div className="text-left text-fifth dark:text-eighth font-medium">
             Думаю{dots}
         </div>
     );

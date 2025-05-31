@@ -16,22 +16,26 @@ html{
 
 /* Світла тема */
 :root {
-  --color-bg:      #438b4b; /* header */
-  --color-surface: #edf8f0; /* main wrapper bg */
-  --color-text:    #1f2937; /* text, icons */
-  --color-placeholder:    #1f293767;/* ChatFooter input placeholder */
-  --color-border: #1f29373b; /* border */
-  --color-primary: #27a351; /* button, border для (fileUploader,MessageBubble), AddFileIcon hover, selected chat  hover*/
+  --color-primary: #689171; /* */
+  --color-secondary: #DBE5CD; /* */
+  --color-third: #CCD7BA; /* */
+  --color-fourth: #E9EBD5; /* */
+  --color-fifth: #244B38; /* */
+  --color-sixth: #ABBC9E; /* */
+  --color-seveth: #718C74; /* */
+  --color-eighth: #f2f7e3; /* */
 }
 
 /* Темна тема */
 .dark {
-  --color-bg:      #1e2121;
-  --color-surface: #01090c;
-  --color-text:    #a6beb4;
-  --color-placeholder:    #a6beb472;
-  --color-border: #c4d6cf56; /* button */
-  --color-primary: #0fb46f; 
+  --color-primary: #2E6157; /* */
+  --color-secondary: #C2D7C9; /* */
+  --color-third: #1F312B; /* second background */
+  --color-fourth: #16261F; /* main background */
+  --color-fifth: #DFE2D0; /* */
+  --color-sixth: #507e6f; /* */
+  --color-seveth: #718C74; /* */
+  --color-eighth: #f2f7e3; /* */
 }
 
 code {

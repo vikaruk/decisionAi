@@ -11,13 +11,13 @@ interface Props {
 export default function SidebarItem({ id, title, isActive, onSelect, onDelete }: Props) {
     return (
         <div
-            className={`flex items-center mx-2.5 my-1 justify-between p-2 rounded-xl border-1 border-border cursor-pointer hover:bg-border dark:hover:bg-gray-700 ${isActive ? 'dark:bg-gray-800' : ''}`}
+            className={`flex items-center mx-2.5 my-1 justify-between p-2 rounded-xl border-1 border-sixth cursor-pointer hover:bg-sixth ${isActive ? ' opacity-60 hover:bg-transparent' : ''}`}
             onClick={() => onSelect(id)}
         >
-            <span className="truncate text-text bg-bg">{title}</span>
+            <span className="truncate text-fifth dark:text-secondary bg-transparent">{title}</span>
             <button
                 onClick={e => { e.stopPropagation(); onDelete(id); }}
-                className="text-text hover:text-border"
+                className="text-fifth dark:text-secondary hover:text-sixth dark:hover:text-third"
             >
                 <TrashIcon />
             </button>

@@ -8,12 +8,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: 'var(--color-bg)',
-        text: 'var(--color-text)',
         primary: 'var(--color-primary)',
-        border: 'var(--color-border)',
-        placeholder: 'var(--color-placeholder)',
-        surface: 'var(--color-surface)',
+        secondary: 'var(--color-secondary)',
+        third: 'var(--color-third)',
+        fourth: 'var(--color-fourth)',
+        fifth: 'var(--color-fifth)',
+        sixth: 'var(--color-sixth)',
+        seveth: 'var(--color-seveth)',
+        eighth: 'var(--color-eighth)',
       },
     },
   },

@@ -20,8 +20,8 @@ export default function ChatMain({ history, sending, pendingFileParts }: Props) 
 
     if (!history?.length && pendingFileParts?.length) {
         return (
-            <div className='text-center text-xl text-gray-500 dark:text-gray-400 mt-8'>
-                <h2 className="text-4xl mb-4">
+            <div className='text-center text-xl text-fifth'>
+                <h2 className="text-4xl mb-4 ">
                     ✅ Файл успішно завантажено!
                 </h2>
                 <div className="mb-4">
@@ -33,7 +33,7 @@ export default function ChatMain({ history, sending, pendingFileParts }: Props) 
     }
     if (!history?.length) {
         return (
-            <div className="text-center text-xl text-gray-500 dark:text-gray-400 mt-8">
+            <div className="text-center text-xl text-fifth mt-8">
                 <h2 className="text-4xl mb-4">
                     Вітаємо у Чат-помічнику - інтелектуальній системі підтримки рішень!
                 </h2>
@@ -47,15 +47,13 @@ export default function ChatMain({ history, sending, pendingFileParts }: Props) 
 
                 <ul className="list-none space-y-2 mb-4">
                     <li className="flex items-start gap-2 text-justify leading-relaxed">
-                        <span>🔹</span>
                         <span>
-                            Завантажте документ у форматі PDF або TXT.
+                            • Завантажте документ у форматі PDF або TXT.
                         </span>
                     </li>
                     <li className="flex items-start gap-2 text-justify leading-relaxed">
-                        <span>🔹</span>
                         <span>
-                            Після завантаження ви зможете ставити питання або надавати команди, а система надасть вам чіткі та структуровані відповіді.
+                            • Після завантаження ви зможете ставити питання або надавати команди, а система надасть вам чіткі та структуровані відповіді.
                         </span>
                     </li>
                 </ul>

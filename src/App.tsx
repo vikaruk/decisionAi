@@ -81,7 +81,7 @@ export default function App() {
   };
 
   return (
-    <div className="flex h-screen bg-surface">
+    <div className="flex h-screen bg-fourth">
       <Sidebar
         sessions={sessions}
         currentSessionId={currentSessionId}
@@ -105,7 +105,7 @@ export default function App() {
       >
         <ChatHeader onMenuClick={() => setSidebarOpen(o => !o)} />
 
-        <main className="relative flex-1 p-4 overflow-y-auto space-y-4 max-w-5xl mx-auto max-md:w-screen w-full mb-18 bg-surface">
+        <main className="relative flex-1 p-4 overflow-y-auto space-y-4 max-w-5xl mx-auto max-md:w-screen w-full mb-18 bg-fourth">
           <ChatMain history={history} sending={sending} pendingFileParts={pendingFileParts} />
         </main>
         {fileUploaderVisible && (

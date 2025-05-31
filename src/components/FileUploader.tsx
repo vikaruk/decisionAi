@@ -96,7 +96,7 @@ export default function FileUploader({
                 className={` relative flex flex-col items-center justify-center transition-colors p-8 text-center border-2 
                     border-dashed border-primary rounded-lg select-none  
                      ${disable ? 'opacity-50 cursor-no-drop' : `cursor-pointer ${dragActive ? '!bg-primary/25' : ''} 
-                    ${fileLoading ? 'opacity-50 cursor-wait' : 'hover:bg-primary/25 dark:hover:bg-primary/25'} bg-white dark:bg-gray-800`}
+                    ${fileLoading ? 'opacity-50 cursor-wait' : 'hover:bg-sixth dark:hover:bg-sixth'} bg-third `}
         `}
             >
                 <input
@@ -109,7 +109,7 @@ export default function FileUploader({
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                 />
                 {!fileLoading ? (
-                    <span className="text-gray-500 dark:text-gray-400">
+                    <span className="text-fifth">
                         Завантажити <strong>PDF</strong> або <strong>TXT</strong>
                         <br />
                         або перетягніть файли сюди
