@@ -1,6 +1,6 @@
 import { useTheme } from '../context/ThemeContext';
 import LightThemeIcon from './icons/LightThemeIcon';
-import NightThemeIcon from './icons/nightThemeIcon';
+import NightThemeIcon from './icons/NightThemeIcon';
 
 export default function ThemeToggle() {
     const { theme, toggle } = useTheme();

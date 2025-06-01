@@ -3,7 +3,7 @@ import { getStorage, setStorage } from '../utils/storage';
 import type { Session } from '../types';
 
 const STORAGE_KEY = 'geminiChatSessions';
-
+const currentVersion = 'v2'
 export function useSessions() {
     const [sessions, setSessions] = useState<Session[]>(() => getStorage(STORAGE_KEY) || []);
     const [currentSessionId, setCurrentSessionId] = useState<string | null>(sessions[0]?.id || null);
@@ -11,6 +11,17 @@ export function useSessions() {
     useEffect(() => {
         setStorage(STORAGE_KEY, sessions);
     }, [sessions]);
+
+    useEffect(() => {
+        const versionStorage = getStorage('version')
+        if (versionStorage !== currentVersion) {
+            setStorage(STORAGE_KEY, [])
+            setStorage('version', currentVersion)
+            setSessions([])
+            setCurrentSessionId(null)
+        }
+    }, [])
+
 
     const addSession = (session: Session) => setSessions(prev => [session, ...prev]);
     const updateSession = (id: string, history: Session['history']) =>
