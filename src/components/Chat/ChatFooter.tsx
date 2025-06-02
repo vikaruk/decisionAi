@@ -57,7 +57,7 @@ export default function ChatFooter({ onSend, disabled, pendingFileParts, onAttac
                         }
                     }}
                     disabled={disabled}
-                    className="bg-primary text-eighth px-4 py-2 rounded hover:opacity-75 active:opacity-50 disabled:opacity-50 cursor-pointer"
+                    className="bg-primary text-eighth px-3 md:px-4 py-2 rounded hover:opacity-75 active:opacity-50 disabled:opacity-50 cursor-pointer"
                 >
                     Надіслати
                 </button>
