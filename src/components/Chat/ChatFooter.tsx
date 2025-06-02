@@ -24,7 +24,7 @@ export default function ChatFooter({ onSend, disabled, pendingFileParts, onAttac
     };
 
     return (
-        <footer className="p-4 bg-third shadow-inner absolute bottom-0 w-full">
+        <footer className="px-2 py-4 md:px-4 md:py-4 bg-third shadow-inner absolute bottom-0 w-full">
             <div className='flex gap-3 max-w-full overflow-x-auto'>
                 {pendingFileParts?.map(file =>
                     <div className='flex flex-col items-center text-fifth cursor-pointer hover:text-sixth' onClick={() => removePendingFile(file.fileData?.fileUri)}>
@@ -57,7 +57,7 @@ export default function ChatFooter({ onSend, disabled, pendingFileParts, onAttac
                         }
                     }}
                     disabled={disabled}
-                    className="bg-primary text-eighth px-3 md:px-4 py-2 rounded hover:opacity-75 active:opacity-50 disabled:opacity-50 cursor-pointer"
+                    className="bg-primary text-eighth px-2 md:px-4 py-2 rounded hover:opacity-75 active:opacity-50 disabled:opacity-50 cursor-pointer"
                 >
                     Надіслати
                 </button>
