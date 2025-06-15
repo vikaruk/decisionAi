@@ -81,7 +81,7 @@ export default function App() {
   };
 
   return (
-    <div className="flex h-screen bg-fourth">
+    <div className="flex h-full bg-fourth">
       <Sidebar
         sessions={sessions}
         currentSessionId={currentSessionId}
